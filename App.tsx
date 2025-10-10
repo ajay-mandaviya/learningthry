@@ -1,45 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
-  useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import RootStack from './src/navigation/RootStack';
+import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
+import store, { persistor } from './src/redux/store';
+import { PersistGate } from "redux-persist/integration/react";
+import { ActivityIndicator } from 'react-native';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+
+
+
+const App = () => {
+
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <NavigationContainer>
+        <Provider store={store}>
+          <PersistGate loading={<ActivityIndicator size="large" color="#0000ff" />} persistor={persistor}>
+          <RootStack />
+          </PersistGate>
+        </Provider>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
 
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+
 
 export default App;
