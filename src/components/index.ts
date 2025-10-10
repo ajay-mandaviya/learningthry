@@ -1,3 +1,5 @@
 export {default as InputField } from './InputField'
 export {default as Button } from './Button'
 export {default as OTPInput } from './OTPInput'
+export {default as ErrorBoundary } from './ErrorBoundary'
+export {default as TournamentCard } from './TournamentCard'

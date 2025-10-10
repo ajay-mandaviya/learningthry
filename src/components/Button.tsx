@@ -43,7 +43,7 @@ const Button: React.FC<Props> = ({
     if (variant === 'contained') {
       return {
         ...baseStyle,
-        backgroundColor: '#0f766e', // teal-700 equivalent
+        backgroundColor: '#0f766e', 
       };
     } else {
       return {

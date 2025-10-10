@@ -25,7 +25,7 @@ apiClient.interceptors.request.use(
     });
 
     // You can add authentication token here if needed
-    // const token = getAuthToken(); // Implement this function
+    // const token = getAuthToken(); // Implement this function // since we don't have proper token
     // if (token) {
     //   config.headers = {
     //     ...config.headers,

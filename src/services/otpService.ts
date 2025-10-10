@@ -115,3 +115,32 @@ export const resendOTP = async (mobile: string): Promise<SendOTPResponse> => {
     }
   }
 };
+
+interface TournamentResponse {
+  success: boolean;
+  message?: string;
+  data: any; //
+}
+export const getTournaments = async (
+  page: number = 1,
+  limit: number = 5
+): Promise<TournamentResponse> => {
+  try {
+    const response = await api.get<TournamentResponse>('/tournament/read', {
+      params: { page, limit },
+    });
+
+    const responseData = response.data?.data || response.data;
+    return responseData as TournamentResponse;
+  } catch (error: any) {
+    console.error('Get Tournaments Error:', error);
+
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    } else if (error.message) {
+      throw new Error(error.message);
+    } else {
+      throw new Error('Failed to fetch tournaments. Please try again.');
+    }
+  }
+};

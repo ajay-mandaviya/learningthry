@@ -1,17 +1,23 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { LoginScreen, OTPVerifyScreen, HomeScreen } from "../screens";
+import { LoginScreen, OTPVerifyScreen, HomeScreen, SplashScreen } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="LoginScreen"
+      initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
       }}
     >
+
+      <Stack.Screen 
+        name="SplashScreen" 
+        component={SplashScreen}
+      />
+
       <Stack.Screen 
         name="LoginScreen" 
         component={LoginScreen}

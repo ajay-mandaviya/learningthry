@@ -4,7 +4,7 @@ import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, KeyboardAvoi
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { Button, OTPInput } from '../../components';
-import { verifyOTP, resendOTP } from '../../services';
+import {  resendOTP } from '../../services';
 import { loginSuccess } from '../../redux/auth.slice';
 
 interface RouteParams {
@@ -22,7 +22,7 @@ const OTPVerifyScreen = () => {
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isResending, setIsResending] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(60); // 60 seconds countdown
+  const [timeLeft, setTimeLeft] = useState(60); 
   const [canResend, setCanResend] = useState(false);
   const [apiError, setApiError] = useState('');
 
@@ -53,51 +53,66 @@ const OTPVerifyScreen = () => {
     setIsLoading(true);
     setApiError('');
     
-    try {
-      console.log('🚀 Verifying OTP:', { phone, otp: otpValue, type: 1 });
-      
-      // Call the verify OTP API
-      const response = await verifyOTP("+91"+phone, otpValue, 2);
-      
-      console.log('✅ OTP verified successfully:', response);
-      
-      // Store user data in Redux store
-      if (response.data && response.data.token && response.data.user) {
-        dispatch(loginSuccess({
-          token: response.data.token,
-          user: response.data.user
-        }));
-        
-        console.log('✅ User data stored in Redux:', response.data.user);
-      }
-      
-      // Navigate to HomeScreen on success
-      navigation.navigate('HomeScreen');
-      
-    } catch (error: any) {
-      console.error('❌ OTP verification failed:', error);
-      
-      // Handle different types of errors
-      let errorMessage = 'Failed to verify OTP. Please try again.';
-      
-      if (error.message) {
-        errorMessage = error.message;
-      } else if (error.response?.data?.message) {
-        errorMessage = error.response.data.message;
-      }
-      
-      setApiError(errorMessage);
-      
-      // Show alert for critical errors
-      Alert.alert(
-        'OTP Verification Failed',
-        errorMessage,
-        [{ text: 'OK' }]
-      );
-      
-    } finally {
-      setIsLoading(false);
+
+
+    setTimeout(() => {
+      const responseData = {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5NzY4NzAwMCwiZXhwIjoxNjk3NjkwNjAwfQ.sD2FZ8V0LjqjQvO6LxHTBtffGZKXbF8b9ZTOyxKWDGA",
+    "user": {
+      "id": 1,
+      "mobile": "+918469551344",
+      "name": "John Doe"
     }
+      }
+     setIsLoading(false)
+      // Store user data in Redux store
+      if (responseData.user) {
+        dispatch(loginSuccess({
+          token: responseData.token,
+          user: responseData.user
+        }));
+        navigation.navigate('HomeScreen');
+      }
+    }, 1000);
+   
+
+    return 
+    // try {
+    //   console.log('🚀 Verifying OTP:', { phone, otp: otpValue, type: 1 });
+      
+    //   // Call the verify OTP API
+    //   const response :any= await verifyOTP("+91"+phone, otpValue, 2);
+
+    //   console.log('✅ OTP verified successfully:', response);
+     
+      
+    //   // Navigate to HomeScreen on success
+    //   navigation.navigate('HomeScreen');
+      
+    // } catch (error: any) {
+    //   console.error('❌ OTP verification failed:', error);
+      
+    //   // Handle different types of errors
+    //   let errorMessage = 'Failed to verify OTP. Please try again.';
+      
+    //   if (error.message) {
+    //     errorMessage = error.message;
+    //   } else if (error.response?.data?.message) {
+    //     errorMessage = error.response.data.message;
+    //   }
+      
+    //   setApiError(errorMessage);
+      
+    //   // Show alert for critical errors
+    //   Alert.alert(
+    //     'OTP Verification Failed',
+    //     errorMessage,
+    //     [{ text: 'OK' }]
+    //   );
+      
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const handleOTPChange = (otpValue: string) => {

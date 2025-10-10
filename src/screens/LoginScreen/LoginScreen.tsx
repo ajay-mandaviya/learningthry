@@ -80,15 +80,16 @@ const LoginScreen = () => {
     }
   }
 
+
   return (
+    <SafeAreaView style={styles.safe}>
     <ImageBackground
     source={require('../../assets/images/login_bg_1.png')}
     style={styles.backgroundImage}
     resizeMode="cover"
-    //  
     >
       <View style={styles.overlay} />
-      <SafeAreaView style={styles.safe}>
+      <>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.flex}>
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
           <View style={styles.headerRow}>
@@ -129,8 +130,10 @@ const LoginScreen = () => {
           </TouchableOpacity>
           </ScrollView>
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </>
     </ImageBackground>
+  </SafeAreaView>
+     
   )
 }
 

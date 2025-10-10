@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store, { persistor } from './src/redux/store';
 import { PersistGate } from "redux-persist/integration/react";
 import { ActivityIndicator } from 'react-native';
+import { ErrorBoundary } from './src/components';
 
 
 
@@ -16,6 +17,7 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
+      <ErrorBoundary>
       <NavigationContainer>
         <Provider store={store}>
           <PersistGate loading={<ActivityIndicator size="large" color="#0000ff" />} persistor={persistor}>
@@ -23,6 +25,7 @@ const App = () => {
           </PersistGate>
         </Provider>
       </NavigationContainer>
+      </ErrorBoundary>
     </SafeAreaProvider>
   );
 }
