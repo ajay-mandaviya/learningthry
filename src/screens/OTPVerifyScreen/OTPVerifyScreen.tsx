@@ -325,7 +325,10 @@ const styles = StyleSheet.create({
   backIcon: {
     color: '#ffffff',
     fontSize: 20,
+    textAlign:'center',
     fontWeight: 'bold',
+    
+
   },
   header: {
     alignItems: 'center',

@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
   activePinCodeContainer: {
     borderColor: '#60a5fa',
     backgroundColor: 'rgba(96, 165, 250, 0.1)',
-    shadowColor: '#60a5fa',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
+    // shadowColor: '#60a5fa',
+    // shadowOffset: { width: 0, height: 0 },
+    // shadowOpacity: 0.3,
+    // shadowRadius: 8,
+    // elevation: 4,
   },
   placeholderText: {
     fontSize: 24,
@@ -136,11 +136,11 @@ const styles = StyleSheet.create({
   filledPinCodeContainer: {
     borderColor: '#10b981',
     backgroundColor: 'rgba(16, 185, 129, 0.1)',
-    shadowColor: '#10b981',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
+    // shadowColor: '#10b981',
+    // shadowOffset: { width: 0, height: 0 },
+    // shadowOpacity: 0.3,
+    // shadowRadius: 8,
+    // elevation: 4,
   },
   disabledPinCodeContainer: {
     borderColor: '#4b5563',
