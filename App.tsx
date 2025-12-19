@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
@@ -6,14 +7,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import store, { persistor } from './src/redux/store';
 import { PersistGate } from "redux-persist/integration/react";
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator,  } from 'react-native';
 import { ErrorBoundary } from './src/components';
 
-
-
-
 const App = () => {
-
 
   return (
     <SafeAreaProvider>

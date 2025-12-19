@@ -16,6 +16,7 @@ import { TournamentCard } from '../../components';
 import { logout } from '../../redux/auth.slice';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import Config from 'react-native-config';
 const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const navigation:any = useNavigation()
@@ -62,6 +63,10 @@ const HomeScreen = () => {
           text: 'Logout',
           style: 'destructive', 
           onPress: () => handleLogout(), 
+        },
+        {
+          text:`Current Stage ${Config.APP_ENV}`,
+          style:'cancel',
         },
       ],
       { 
