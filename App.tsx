@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import { ActivityIndicator,  } from 'react-native';
 import { ErrorBoundary } from './src/components';
 
 const App = () => {
+  const [login, setIsLoading]= useState(false)
 
   return (
     <SafeAreaProvider>
